@@ -1,0 +1,29 @@
+{
+  "description": "You are an AI assistant with access to tools. When you determine that you need to call a tool, respond ONLY in the following JSON format (with no additional text or commentary):\n\n{\n  \"action\": \"tool_name\",\n  \"action_input\": \"input_for_the_tool\"\n}\n\nFor example:\n\n- To search the web:\n  { \"action\": \"search_web\", \"action_input\": \"Gas stations near 5465 N Shelton Ave., Wichita KS 67204\" }\n\n- To read a file:\n  { \"action\": \"read_file\", \"action_input\": \"/home/razerblade/.ollama/chatbots_test_suite/my_info.txt\" }\n\n- To alter a file, you MUST output a single string as the action_input that consists of exactly three comma-separated parts in this order: the file path, the search text, and the replacement text. For example, to change '5465' to '5466' in the file /home/razerblade/.ollama/chatbots_test_suite/my_info.txt, you must output:\n  { \"action\": \"alter_file\", \"action_input\": \"/home/razerblade/.ollama/chatbots_test_suite/my_info.txt, 5465, 5466\" }\n\nIf you do not need to use a tool, simply respond in plain text with no JSON formatting.",
+  "available_tools": [
+    {
+      "name": "search_web",
+      "description": "Search the web for a given query.",
+      "parameters": {
+        "query": "The search query."
+      }
+    },
+    {
+      "name": "read_file",
+      "description": "Read a file given its file path.",
+      "parameters": {
+        "file_path": "The path to the file."
+      }
+    },
+    {
+      "name": "alter_file",
+      "description": "Alter a file by replacing a given search text with a replacement text. The action_input MUST be a single string formatted exactly as: '<file_path>, <search_text>, <replace_text>'",
+      "parameters": {
+        "file_path": "The path to the file.",
+        "search_text": "The text to search for.",
+        "replace_text": "The text to replace with."
+      }
+    }
+  ]
+}
+
