@@ -1,0 +1,54 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+      publish_rate: 50
+
+    joint_trajectory_controller:
+      type: "joint_trajectory_controller/JointTrajectoryController"
+      joints:
+        - rb_servo_r_hip
+        - r_hip_r_thigh
+        - r_thigh_r_knee
+        - r_knee_r_shin
+        - r_shin_r_ankle
+        - r_ankle_r_foot
+        - lb_servo_l_hip
+        - l_hip_l_thigh
+        - l_thigh_l_knee
+        - l_knee_l_shin
+        - l_shin_l_ankle
+        - l_ankle_l_foot
+        - torso_r_shoulder
+        - r_shoulder_rs_servo
+        - re_servo_r_elbow
+        - torso_l_shoulder
+        - l_shoulder_ls_servo
+        - le_servo_l_elbow
+      command_interfaces:
+        - "position"
+      state_interfaces:
+        - "position"
+        - "velocity"
+      gains:
+        rb_servo_r_hip:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_hip_r_thigh:        {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_thigh_r_knee:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_knee_r_shin:        {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_shin_r_ankle:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_ankle_r_foot:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        lb_servo_l_hip:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_hip_l_thigh:        {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_thigh_l_knee:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_knee_l_shin:        {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_shin_l_ankle:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_ankle_l_foot:       {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        torso_r_shoulder:     {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        r_shoulder_rs_servo:  {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        re_servo_r_elbow:     {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        torso_l_shoulder:     {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        l_shoulder_ls_servo:  {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+        le_servo_l_elbow:     {p: 4.0, i: 0.002, d: 0.0023, i_clamp: 0.5}
+

@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<robot name="plen" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Gazebo ROS 2 Control Plugin (loads controllers from plen_control.yaml) -->
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <robotNamespace>/plen</robotNamespace>
+      <parameters>package://plen_ros/config/plen_control.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+  <!-- Odometry Publisher plugin - Replacing libgazebo_ros2_p3d.so -->
+  <gazebo>
+    <plugin name="diff_drive_controller" filename="libgazebo_ros2_diff_drive.so">
+      <ros>
+        <namespace>/plen</namespace>
+        <remapping>
+          <from>cmd_vel</from>
+          <to>cmd_vel</to>
+        </remapping>
+      </ros>
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.2</wheel_separation>
+      <wheel_radius>0.05</wheel_radius>
+      <publish_wheel_tf>true</publish_wheel_tf>
+    </plugin>
+  </gazebo>
+
+  <!-- IMU sensor plugin - Replacing libgazebo_ros2_imu.so -->
+  <gazebo>
+    <plugin name="gazebo_ros_imu_sensor" filename="libgazebo_ros_imu_sensor.so">
+      <ros>
+        <namespace>/plen</namespace>
+        <remapping>
+          <from>imu</from>
+          <to>imu/data</to>
+        </remapping>
+      </ros>
+      <always_on>true</always_on>
+      <update_rate>50.0</update_rate>
+      <frame_name>imu_link</frame_name>
+    </plugin>
+  </gazebo>
+  
+  <gazebo reference="torso">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="battery">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="head">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="rt_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="lt_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="rb_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="lb_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_shoulder">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="rs_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_arm">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="re_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_elbow">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_hand">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_shoulder">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="ls_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_arm">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="le_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_elbow">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_hand">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_hip">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_thigh">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_knee">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_knee_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_shin">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_ankle">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="r_foot">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_hip">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_thigh">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_knee">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_knee_servo">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_shin">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_ankle">
+    <material>Gazebo/Orange</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="l_foot">
+    <material>Gazebo/Gray</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+  </gazebo>
+
+  <!-- Contact Sensor for Right Foot -->
+  <gazebo reference="rfs_link">
+    <material>Gazebo/GreyTransparent</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+    <sensor name="rfs_link_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>r_foot_fixed_joint_lump__rfs_link_collision_1</collision>
+      </contact>
+      <!-- Unique plugin name for right foot to avoid collisions with left foot plugin name -->
+      <plugin name="bumper_right_plugin" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>plen/right_foot_contact</bumperTopicName>
+        <frameName>plen/right_foot_contact</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- Example references for left hip, thigh, knee, knee_servo, shin, ankle, foot... -->
+
+  <!-- Contact Sensor for Left Foot -->
+  <gazebo reference="lfs_link">
+    <material>Gazebo/GreyTransparent</material>
+    <mu1>100</mu1>
+    <mu2>100</mu2>
+    <dampingFactor>0.001</dampingFactor>
+    <kp>10000000.0</kp>
+    <kd>1.0</kd>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 1 0</fdir1>
+    <sensor name="lfs_link_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>l_foot_fixed_joint_lump__lfs_link_collision_1</collision>
+      </contact>
+      <!-- Unique plugin name for left foot -->
+      <plugin name="bumper_left_plugin" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>plen/left_foot_contact</bumperTopicName>
+        <frameName>plen/left_foot_contact</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

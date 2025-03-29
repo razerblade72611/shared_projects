@@ -1,0 +1,99 @@
+---
+/plen/controller_manager:
+  ros__parameters:
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+      publish_rate: 100
+
+    controllers:
+      j1_pc:
+        type: position_controllers/JointPositionController
+        joint: rb_servo_r_hip
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j2_pc:
+        type: position_controllers/JointPositionController
+        joint: r_hip_r_thigh
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j3_pc:
+        type: position_controllers/JointPositionController
+        joint: r_thigh_r_knee
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j4_pc:
+        type: position_controllers/JointPositionController
+        joint: r_knee_r_shin
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j5_pc:
+        type: position_controllers/JointPositionController
+        joint: r_shin_r_ankle
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j6_pc:
+        type: position_controllers/JointPositionController
+        joint: r_ankle_r_foot
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j7_pc:
+        type: position_controllers/JointPositionController
+        joint: lb_servo_l_hip
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j8_pc:
+        type: position_controllers/JointPositionController
+        joint: l_hip_l_thigh
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j9_pc:
+        type: position_controllers/JointPositionController
+        joint: l_thigh_l_knee
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j10_pc:
+        type: position_controllers/JointPositionController
+        joint: l_knee_l_shin
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j11_pc:
+        type: position_controllers/JointPositionController
+        joint: l_shin_l_ankle
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j12_pc:
+        type: position_controllers/JointPositionController
+        joint: l_ankle_l_foot
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j13_pc:
+        type: position_controllers/JointPositionController
+        joint: torso_r_shoulder
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j14_pc:
+        type: position_controllers/JointPositionController
+        joint: r_shoulder_rs_servo
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j15_pc:
+        type: position_controllers/JointPositionController
+        joint: re_servo_r_elbow
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j16_pc:
+        type: position_controllers/JointPositionController
+        joint: torso_l_shoulder
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j17_pc:
+        type: position_controllers/JointPositionController
+        joint: l_shoulder_ls_servo
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}
+
+      j18_pc:
+        type: position_controllers/JointPositionController
+        joint: le_servo_l_elbow
+        pid: {p: 4.0, i: 0.001, d: 0.0023, i_clamp: 0.5}

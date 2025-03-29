@@ -1,0 +1,8 @@
+teleop_twist_joy_node:
+  ros__parameters:
+    axis_linear: 1         # Left stick vertical axis for forward/backward.
+    axis_angular: 0        # Left stick horizontal axis for turning.
+    scale_linear: 0.5      # Adjust linear speed scaling.
+    scale_angular: 1.0     # Adjust angular speed scaling.
+    enable_button: -1      # Disable the enable button requirement.
+
